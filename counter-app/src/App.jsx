@@ -1,30 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Component } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default class CounterApp extends Component{
+  constructor(){
+    super();
 
-  return (
-    <>
-      <h1>Counter</h1>
-      <div className="card">
-        
-         <h2> Count is {count} </h2>
+    this.state = {
+      counter : 0,
+    }
+  }
+
+  handleDecrease = ()=>{
+    this.setState({
+      counter:this.state.counter-1
+    })
+  }
+
+  handleIncrease = ()=>{
+    this.setState({
+      counter:this.state.counter+1
+    })
+  }
+
+  handleReset = ()=>{
+    this.setState({
+      counter:this.state.counter*0
+    })
+  }
+
+
+  render(){
+    return(
+      <div className="counter">
+      <h1>Ash's Counter App</h1>
+      <span className="counter__output">{this.state.counter}</span>
+      <div className="btn__container">
+        <button className="control__btn" onClick={this.handleIncrease}>+</button>
+        <button className="control__btn" onClick={this.handleDecrease}>-</button>
+        <button className="reset" onClick={this.handleReset}>Reset</button>
       </div>
-      <button onClick={() => setCount((count) => count + 1)}>
-          +
-        </button><p></p>
-        <button onClick={() => setCount((count) => count - 1)}>
-          -
-        </button>
-        <p></p>
-        <button onClick={() => setCount((count) => count * 0)}>
-          Reset
-        </button>
-    </>
-  )
+    </div>
+    )
+  }
 }
-
-export default App
